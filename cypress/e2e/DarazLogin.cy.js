@@ -192,7 +192,7 @@ describe('Search', () => {
     });
 
 
-    describe.only('Delete Cart', () => {
+    describe('Delete Cart', () => {
 
         before(() => {
           // Login before running the search test
@@ -211,5 +211,6 @@ describe('Search', () => {
         cy.get('.checkbox-wrap > .next-checkbox > input').click();
         cy.get('.btn-wrap > .lazada').click();
         cy.get('.ok').click();
+        cy.get('.cart-empty-text').should('be.visible');
       });
       });
