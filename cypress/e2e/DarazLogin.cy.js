@@ -1,63 +1,18 @@
-//beforeEach(() => {
-  //cy.visit('https://member.daraz.pk/user/login');
-
-//})
-
 describe('Login', () => {
     it('Test 1: Login', () => {
-      cy.viewport(1280, 720);
-    //it.only('Logs in successfully', () => {
+    cy.viewport(1280, 720);
+    
     // Visit the Swag Labs website
     cy.visit('https://member.daraz.pk/user/login');
 
-    // Enter username and password
-    //cy.get('.mod-login-input-loginName > input').type('TestProject@mailinator.com');
-    //cy.get('.mod-input-password > input').type('Test123');
-    
+    //Login
     cy.login('TestProject@mailinator.com', 'Test123');
-
-    // Click the login button
-    //cy.get('.next-btn').click();
 
     // Verify that the login was successful
     cy.url().should('include', '/user/profile#/');
-    //cy.viewport(1024, 768);
-
-    //cy.get('#myAccountTrigger').click();
-  })
-})
-
-//describe('Daraz Login Functionallity', () => {
-  //it.skip('Logs in unsuccessfull', () => {
-  //it('Logs in unsuccessfull', () => {  
-    // Visit the Swag Labs website
-    //cy.visit('https://member.daraz.pk/user/login');
-
-    // Enter username and password
-    //cy.get('.mod-login-input-loginName > input').type('Testproject@mailinator.com');
-    //cy.get('.mod-input-password > input').type('test123');
-
-    // Click the login button
-    //cy.get('.next-btn').click();
-
-    //cy.login('Testproject@mailinator.com', 'TeSt123');
-
-    //cy.fixture('example').then(function (data){
-    //this.data = data;
-    //cy.login(this.data.Username, this.data.Password)
-
-    //})
-
-
-
-    // Verify that the login was unsuccessful
-  //cy.get('YOUR_ERROR_MESSAGE_SELECTOR').should('be.visible')});
-//});
-
-//afterEach(() => {
-  //cy.visit('https://member.daraz.pk/user/login');
-
-//})
+    
+  });
+});
 
 describe('Search', () => {
 
@@ -65,14 +20,12 @@ describe('Search', () => {
     // Login before running the search test
     cy.visit('https://member.daraz.pk/user/login');
     // Perform login actions
-        cy.login('TestProject@mailinator.com', 'Test123');
+    cy.login('TestProject@mailinator.com', 'Test123');
 
   });
 
   it('Test 2: Search:',() =>{
     cy.viewport(1280, 720);
-    //cy.search('Table Mats');    
-    //cy.get('.lzd-logo-content > a > img').click();
     cy.visit('https://www.daraz.pk');
     const searchTerm = 'Table';
 
@@ -80,7 +33,6 @@ describe('Search', () => {
     cy.get('.search-box__button--1oH7').click();
 
     //Assertion
-    //cy.contains('Search results for').should('be.visible');
     cy.get('[data-item-id="376875863"] > .box--pRqdD > .inner--SODwy').should('be.visible');
   });
 
@@ -98,8 +50,9 @@ describe('Search', () => {
     before(() => {
       // Login before running the search test
       cy.visit('https://member.daraz.pk/user/login');
+
       // Perform login actions
-          cy.login('TestProject@mailinator.com', 'Test123');
+      cy.login('TestProject@mailinator.com', 'Test123');
   
     });
   
@@ -115,7 +68,6 @@ describe('Search', () => {
       cy.get('.mod-input-extendAddress > input').type('Logic School');
       cy.get('.mod-select-location-tree-1 > .next-select > .next-select-inner').click();
       cy.get('#R357988').click();
-      //cy.get('.mod-select-location-tree-1 > .next-select > .next-select-inner', { timeout: 10000 }).contains('Punjab').click({ force: true });
       cy.get('.mod-address-tag-home').click();
       cy.get('.mod-select-location-tree-2 > .next-select > .next-select-inner').click();
       cy.get('#R80302463').click();
@@ -197,6 +149,7 @@ describe('Search', () => {
         before(() => {
           // Login before running the search test
           cy.visit('https://member.daraz.pk/user/login');
+
           // Perform login actions
           cy.login('TestProject@mailinator.com', 'Test123');
       
@@ -212,5 +165,6 @@ describe('Search', () => {
         cy.get('.btn-wrap > .lazada').click();
         cy.get('.ok').click();
         cy.get('.cart-empty-text').should('be.visible');
+        
       });
       });
