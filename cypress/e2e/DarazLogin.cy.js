@@ -3,8 +3,9 @@
 
 //})
 
-describe('Daraz Functionallity', () => {
+describe('Login', () => {
     it('Test 1: Login', () => {
+      cy.viewport(1280, 720);
     //it.only('Logs in successfully', () => {
     // Visit the Swag Labs website
     cy.visit('https://member.daraz.pk/user/login');
@@ -68,8 +69,8 @@ describe('Search', () => {
 
   });
 
-  it('Test 2: Search',() =>{
-
+  it('Test 2: Search:',() =>{
+    cy.viewport(1280, 720);
     //cy.search('Table Mats');    
     //cy.get('.lzd-logo-content > a > img').click();
     cy.visit('https://www.daraz.pk');
@@ -102,7 +103,7 @@ describe('Search', () => {
   
     });
   
-    it('Test 3: New Address',() =>{
+    it('Test 3: New Address:',() =>{
       cy.viewport(1280, 720);
       cy.get('#Address-book > a').click();
       cy.get('.mod-address-book-ft-content', {force: true}).click();
@@ -128,3 +129,87 @@ describe('Search', () => {
 
     });
     });
+
+    describe('Add Cart', () => {
+
+      before(() => {
+        // Login before running the search test
+        cy.visit('https://member.daraz.pk/user/login');
+        // Perform login actions
+        cy.login('TestProject@mailinator.com', 'Test123');
+    
+      });
+    
+      it('Test 4: Add to Cart:',() =>{
+        cy.viewport(1280, 720);
+
+        cy.visit('https://www.daraz.pk');
+
+        //1st Item
+        cy.get('#q').clear().type('Apple');
+        cy.get('.search-box__button--1oH7').click();
+        cy.get('[data-item-id="401723923"] > .box--pRqdD').click();
+        cy.get('.pdp-button_theme_orange').click();
+        cy.get('.next-dialog-close > .next-icon').click();
+
+        //2nd Item
+        cy.get('#q').clear().type('Cat Food');
+        cy.get('.search-box__button--1oH7').click();
+        cy.get('[data-item-id="266742962"] > .box--pRqdD').click();
+        cy.get('.pdp-button_theme_orange').click();
+        cy.get('.next-dialog-close > .next-icon').click();
+
+        //3rd Item
+        cy.get('#q').clear().type('Drinks');
+        cy.get('.search-box__button--1oH7').click();
+        cy.get('[data-item-id="144490042"] > .box--pRqdD').click();
+        cy.get('.pdp-button_theme_orange').click();
+        cy.get('.next-dialog-close > .next-icon').click();
+
+
+        //4th Item
+        cy.get('#q').clear().type('Chips');
+        cy.get('.search-box__button--1oH7').click();
+        cy.get('[data-item-id="199464498"] > .box--pRqdD').click();
+        cy.get('.pdp-button_theme_orange').click();
+        cy.get('.next-dialog-close > .next-icon').click();
+
+        //5th Item
+        cy.get('#q').clear().type('Plants');
+        cy.get('.search-box__button--1oH7').click();
+        cy.get('[data-item-id="260257940"] > .box--pRqdD').click();
+        cy.get('.pdp-button_theme_orange').click();
+        cy.get('.next-dialog-close > .next-icon').click();
+
+
+        //Assertion
+        cy.get('.cart-icon').click();
+        cy.get('.checkbox-wrap > .next-checkbox > input').click();
+        cy.get('.summary-section-heading').should('be.visible');
+
+
+      });
+    });
+
+
+    describe.only('Delete Cart', () => {
+
+        before(() => {
+          // Login before running the search test
+          cy.visit('https://member.daraz.pk/user/login');
+          // Perform login actions
+          cy.login('TestProject@mailinator.com', 'Test123');
+      
+        });
+
+      it('Test 5: Delete from Cart:',() =>{
+        cy.viewport(1280, 720);
+        cy.visit('https://www.daraz.pk');
+        
+        // Go to cart
+        cy.get('.cart-icon').click();
+        cy.get('.checkbox-wrap > .next-checkbox > input').click();
+        cy.get('.btn-wrap > .lazada').click();
+        cy.get('.ok').click();
+      });
+      });
