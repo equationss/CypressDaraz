@@ -168,3 +168,50 @@ describe('Search', () => {
         
       });
       });
+
+      describe('Flash Sale', () => {
+
+        before(() => {
+          // Login before running the search test
+          cy.visit('https://member.daraz.pk/user/login');
+
+          // Perform login actions
+          cy.login('TestProject@mailinator.com', 'Test123');
+      
+        });
+
+      it('Test 6: Flash Sale:',() =>{
+        cy.viewport(1280, 720);
+        cy.visit('https://www.daraz.pk');
+        
+        // Go to Flash Sale
+        cy.get('.card-fs-content-button').click();
+        cy.get('[href="//www.daraz.pk/products/rs-19-i132302691-s1456489341.html"] > .flash-unit').click();
+        cy.get('.next-number-picker-handler-up-inner > .next-icon').click();
+        cy.get('.next-number-picker-handler-up-inner > .next-icon').click();
+
+        //Assertion to select max Value 3
+        cy.get('.next-input > input').should('have.value', '3');
+        
+      });
+      });
+
+
+      describe.only('Update Password', () => {
+
+        before(() => {
+          // Login before running the search test
+          cy.visit('https://member.daraz.pk/user/login');
+    
+          // Perform login actions
+          cy.login('TestProject@mailinator.com', 'Test123');
+      
+        });
+      
+        it('Test 7: New Password:',() =>{
+          cy.viewport(1280, 720);
+          cy.get('#My-profile > a').c;ick();
+          
+    
+        });
+        });
