@@ -197,7 +197,7 @@ describe('Search', () => {
       });
 
 
-      describe.only('Update Password', () => {
+      describe('Update Password', () => {
 
         before(() => {
           // Login before running the search test
@@ -210,8 +210,22 @@ describe('Search', () => {
       
         it('Test 7: New Password:',() =>{
           cy.viewport(1280, 720);
-          cy.get('#My-profile > a').c;ick();
-          
-    
+
+          //Go to My Profile
+          cy.get('#My-profile > a').click();
+
+          //Change Password 
+          cy.get('a.next-btn').click();
+
+          //Change Form
+          cy.get('.change-form > :nth-child(1) > input').type('Test123');
+          cy.get('.mod-input-newPassword > input').type("Bootcamp@123");
+          cy.get('.mod-input-re-newPassword > input').type("Bootcamp@123");
+          cy.get('.next-btn').click();
+
+          //Assertion
+          const successMessage = 'Success';
+          cy.get('#dialog-header-0').should('be.visible').contains(successMessage);    
+
         });
         });
